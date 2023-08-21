@@ -494,8 +494,12 @@ add_filter('get_search_form', 'custom_search_form', 40);
             <?php while ($the_query->have_posts()) : $the_query->the_post();?>
                 <li class="c-column__item">
                     <a href="<?php echo get_permalink($post->ID); ?>">
+                    <?php if( get_field('icon') ): ?>
                         <img src="<?php echo get_field('icon')['url']; ?>" alt="<?php echo get_the_title($post->ID); ?>">
-                        <p><?php echo get_the_title($post->ID); ?></p>
+                        <?php else : ?> 
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/img/no-imgpublish.png" alt="no image available">
+						<?php endif; ?>
+                        <p><?php echo get_field('title');  ?></p>
                     </a>
                 </li>
             <?php endwhile; endif;

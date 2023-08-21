@@ -3,7 +3,7 @@
 <?php custom_breadcrumbs(); ?>
     <div class="c-headpage">
         <div class="l-container2">
-            <h1 class="c-title">お問い合わせ</h1>
+            <h2 class="c-title">お問い合わせ</h2>
         </div>
     </div>
     <div class="p-contact__content c-contact">

@@ -4,7 +4,7 @@
     $p = get_post(); ?>
         <div class="c-headpage">
             <div class="l-container2">
-                <h2 class="c-title"><?php the_title(); ?></h2>
+                <h2 class="c-title"><?php echo get_field('title'); ?></h2>
             </div>
             <p><?php echo get_field('description'); ?></p>
         </div>
@@ -69,28 +69,36 @@
                 </div>
             </div>
         <?php endif; ?> 
+
         <div class="p-service__division">
-            <div class="l-container">
-                <h3 class="p-service__subtitle">関連サービス</h3>
-                <ul class="division-list c-flex">
-                    <?php if( have_rows('related-service-rpt') ): ?>
-				        <?php while( have_rows('related-service-rpt') ): the_row(); ?>
+            <?php if( have_rows('related-service-rpt') ): ?>
+                <div class="l-container">
+                    <h3 class="p-service__subtitle">関連サービス</h3>
+                    <ul class="division-list c-flex">
+                        <?php while( have_rows('related-service-rpt') ): the_row(); ?>
                             <li class="small-12 medium-4">
                                 <a href="<?php echo get_permalink($post->ID); ?>">
-                                    <p class="img"><img src="<?php echo get_field('icon')['url']; ?>" alt="<?php echo get_field('title'); ?>"></p>
+                                    <p class="img">
+                                        <?php if( get_field('icon') ): ?>
+                                            <img src="<?php echo get_field('icon')['url']; ?>" alt="<?php echo get_field('title'); ?>">
+                                        <?php else : ?> 
+                                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/no-imgpublish.png" alt="no image available">
+                                        <?php endif; ?>	
+                                    </p>
                                     <p class="text"><span class="arrow"><?php echo get_field('title'); ?></span></p>
                                 </a>
                             </li>
                         <?php endwhile; ?>
-                    <?php endif; ?>
-                </ul>
-            </div>
-
+                    </ul>
+                </div>
+            <?php endif; ?>
+    
             <div class="l-btn">
                 <div class="c-btn c-btn--small">
                     <a class="c-btnlink" href="<?php echo get_site_url();?>/services">ご提供サービス一覧へ</a>
                 </div>
             </div>
         </div>
+        
 </main>
 <?php get_footer(); ?>

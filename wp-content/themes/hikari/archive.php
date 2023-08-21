@@ -32,7 +32,7 @@ $post_type_object = get_post_type_object($post_type);?>
                             </div>
                         <div class="c-gridpost__info">
                             <p class="datepost"><?php echo get_field('publication-date'); ?></p>
-                            <h3><?php echo get_the_title($post->ID); ?></h3>
+                            <h3><?php echo get_field('title'); ?></h3>
                             <p class="price"><?php echo get_field('price'); ?></p>
                             <a href="<?php echo get_permalink($post->ID); ?>" class="c-btnview">詳しく見る</a>
                         </div>

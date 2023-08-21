@@ -22,7 +22,7 @@ $post_type_object = get_post_type_object($post_type);?>
 			<div class=" p-service__checkArea">
 				<form id="serviceSearch" method="get" action="<?php the_permalink() ?>">
 					<div class="checkArea__form">
-						<legend class="servicesList-heading">サービスの対象で選ぶ</legend>
+						<p class="servicesList-heading">サービスの対象で選ぶ</p>
 						<div class="checkArea__inner">
 							<?php
 							$terms1 = get_terms(array( 
@@ -40,7 +40,7 @@ $post_type_object = get_post_type_object($post_type);?>
 						</div>
 					</div>
 					<div class="checkArea__form form2">
-						<legend class="servicesList-heading">サービスの内容で選ぶ</legend>
+						<p class="servicesList-heading">サービスの内容で選ぶ</p>
 						<div class="checkArea__inner">
 							<?php
 							$terms2 = get_terms(array( 
@@ -62,34 +62,14 @@ $post_type_object = get_post_type_object($post_type);?>
 			<?php
 			$args = array(
 				'post_type' => 'service', 'posts_per_page' => -1, 'tax_query' => array(
-					'relation' => 'AND',
-					array(
-						'taxonomy' => 'service-category2',
-						'terms' => array(11,12,13,14,15),
-						// 'terms' => array(27, 28, 29, 30, 31),
-					),
-					array(
-						'taxonomy' => 'service-category',
-						'terms' => array(7,8,9,10),
-						// 'terms' => array(23, 24, 25, 26),
-					)
-
-					// array(
-					// 	'taxonomy' => 'service-category2',
-					// 	'field' => 'slug',
-					// 	'terms' => array('finance', 'tax', 'inheritance', 'business-succession', 'business-support'),
-					// ),
-					// array(
-					// 	'taxonomy' => 'service-category',
-					// 	'field' => 'slug',
-					// 	'terms' => array('social-welfare-corporation', 'medical-workers',  'individual', 'business-person'),
-					// )
+					'relation' => 'AND'
+					
 				)
 			);
 
 			$the_query = new WP_Query($args);
 			if ($the_query->have_posts()) : ?>
-				<p class="p-service__result"><span><?php echo $the_query->post_count; ?><span>件が該当しました</p>
+				<p class="p-service__result"><span><?php echo $the_query->post_count; ?></span>件が該当しました</p>
 				<ul class="c-column">
 					<?php while ($the_query->have_posts()) : $the_query->the_post();
 						$post = get_post();?>
@@ -113,12 +93,6 @@ $post_type_object = get_post_type_object($post_type);?>
 				<img src="<?php echo get_template_directory_uri(); ?>/assets/img/img_more06.png" alt="代表社員メッセージ">
 			</div>
 		</div>
-		<!-- <?php $cates = get_taxonomies();
-echo '<pre>';
-print_r($cates);
-echo '</pre>';
-// $cate->term_id;
-?> -->
 	</div>
 </main>
 <?php get_footer(); ?>

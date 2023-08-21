@@ -110,7 +110,7 @@ $(document).ready(function(){
                 required: true
             },
             "tel": {
-                required: true,
+                required: false,
                 fnType: true,
                 maxlength: 13,
                 minlength:10,
@@ -146,7 +146,7 @@ $(document).ready(function(){
         return value.match(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
       }, '正しいメールアドレスを入力してください');
     $.validator.addMethod('fnType', function (value) {
-        return value.match(/^(?:\d{10}|\d{11}|\d{3}-\d{3}-\d{4}|\d{2}-\d{4}-\d{4}|\d{3}-\d{4}-\d{4})$/);
+        return value.match(/^(?:\d{0}|\d{10}|\d{11}|\d{3}-\d{3}-\d{4}|\d{2}-\d{4}-\d{4}|\d{3}-\d{4}-\d{4})$/);
       }, '有効な電話番号を入力してください');
     $(".mw_wp_form form .c-btn__submit").click(function () {
         if ($(".mw_wp_form form").valid()) {
